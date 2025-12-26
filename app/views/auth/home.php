@@ -159,7 +159,8 @@
                     <li>👮 Validasi admin</li>
                     <li>📊 Dashboard rekap peminjaman otomatis</li>
                     <li>🔧 Penandaan kondisi (baik/rusak)</li>
-                    <li>🧠 Sorting</li>
+                    <li>🧠 Mini AI</li>
+                    <li>🔍 Cetak PDF</li>
                 </ul>
 
                 <div class="text-center mt-4">

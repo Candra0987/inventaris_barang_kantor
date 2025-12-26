@@ -72,8 +72,6 @@ th, td {
   font-size: 0.95rem;
 }
 
-
-
 .btn-sm {
   padding: 6px 12px;
   border-radius: 6px;
@@ -145,7 +143,6 @@ th, td {
   background: #f5f5f5;
   pointer-events: none;
 }
-
 </style>
 
 <div class="page-header">
@@ -159,6 +156,22 @@ th, td {
     <a href="?url=admin/items&condition=bagus" style="background:#198754;">Bagus</a>
     <a href="?url=admin/items&condition=rusak" style="background:#dc3545;">Rusak</a>
 </div>
+
+<!-- CHART -->
+<div style="max-width:500px; margin: 70px auto;">
+    <canvas id="itemChart"></canvas>
+</div>
+
+<?php
+// Hitung jumlah barang berdasarkan kondisi
+$bagusCount = 0;
+$rusakCount = 0;
+
+foreach ($items as $it) {
+    if ($it['condition'] === 'bagus') $bagusCount++;
+    if ($it['condition'] === 'rusak') $rusakCount++;
+}
+?>
 
 <div class="table-wrapper">
   <table>
@@ -180,7 +193,6 @@ th, td {
           <td><?= htmlspecialchars($it['category_name']) ?></td>
           <td><?= $it['quantity'] ?></td>
           
-          <!-- Badge kondisi -->
           <td>
             <span class="badge <?= $it['condition'] ?>">
                 <?= ucfirst($it['condition']) ?>
@@ -226,5 +238,31 @@ $conditionParam = isset($_GET['condition']) ? '&condition=' . $_GET['condition']
   <?php endif; ?>
 </div>
 
+<!-- CHART.JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('itemChart').getContext('2d');
+const itemChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Bagus', 'Rusak'],
+        datasets: [{
+            label: 'Jumlah Barang',
+            data: [<?= $bagusCount ?>, <?= $rusakCount ?>],
+            backgroundColor: ['#198754', '#dc3545']
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            title: { display: true, text: 'Jumlah Barang Berdasarkan Kondisi' }
+        },
+        scales: {
+            y: { beginAtZero: true, precision: 0 }
+        }
+    }
+});
+</script>
 
 <?php require __DIR__.'/../layout/footer.php'; ?>

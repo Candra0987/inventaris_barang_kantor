@@ -41,7 +41,7 @@ if(isset($_SESSION['error'])){
     }
 
     table.table tr:nth-child(even) {
-        background-color: #f2f2f2;
+        background-color: #ffffffff;
     }
 
     table.table tr:hover {
