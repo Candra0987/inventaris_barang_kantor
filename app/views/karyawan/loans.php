@@ -40,12 +40,10 @@ if(isset($_SESSION['error'])){
         color: white;
     }
 
-    table.table tr:nth-child(even) {
-        background-color: #ffffffff;
-    }
+
 
     table.table tr:hover {
-        background-color: #ddd;
+        background-color: green;
     }
 
     .btn {
@@ -82,6 +80,44 @@ if(isset($_SESSION['error'])){
         background-color: #f8d7da;
         color: #721c24;
     }
+
+    .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 30px;
+}
+
+.pagination a,
+.pagination span {
+    padding: 6px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.pagination a {
+    color: #007bff;
+    background: #fff;
+}
+
+.pagination a:hover {
+    background: #007bff;
+    color: #fff;
+}
+
+.pagination .active {
+    background: #007bff;
+    color: #fff;
+    font-weight: bold;
+}
+
+.pagination .disabled {
+    color: #aaa;
+    background: #f2f2f2;
+}
+
 </style>
 
 <table class='table'>
@@ -112,5 +148,30 @@ if(isset($_SESSION['error'])){
         <?php endforeach; ?>
     </tbody>
 </table>
+<div class="pagination">
+    <!-- Prev -->
+    <?php if ($page > 1): ?>
+        <a href="?url=karyawan/loans&page=<?= $page - 1 ?>">« Prev</a>
+    <?php else: ?>
+        <span class="disabled">« Prev</span>
+    <?php endif; ?>
+
+    <!-- Numbers -->
+    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+        <?php if ($i == $page): ?>
+            <span class="active"><?= $i ?></span>
+        <?php else: ?>
+            <a href="?url=karyawan/loans&page=<?= $i ?>"><?= $i ?></a>
+        <?php endif; ?>
+    <?php endfor; ?>
+
+    <!-- Next -->
+    <?php if ($page < $totalPages): ?>
+        <a href="?url=karyawan/loans&page=<?= $page + 1 ?>">Next »</a>
+    <?php else: ?>
+        <span class="disabled">Next »</span>
+    <?php endif; ?>
+</div>
+
 
 <?php require __DIR__.'/../layout/footer.php'; ?>

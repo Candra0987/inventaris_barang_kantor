@@ -132,12 +132,20 @@ tr:hover {
             <?= htmlspecialchars($it['condition']) ?>
           </td>
 
-          <td>
-            <a class="btn-sm btn-success" 
-                href="?url=karyawan/loanForm&id=<?= $it['id'] ?>">
-                Pinjam
-            </a>
-          </td>
+        <td>
+  <?php if (strtolower($it['condition']) === 'bagus'): ?>
+    <a class="btn-sm btn-success" 
+       href="?url=karyawan/loanForm&id=<?= $it['id'] ?>">
+       Pinjam
+    </a>
+  <?php else: ?>
+    <span class="btn-sm" 
+          style="background:#ccc; color:#666; cursor:not-allowed;">
+      Tidak tersedia
+    </span>
+  <?php endif; ?>
+</td>
+
         </tr>
       <?php endforeach; ?>
     </tbody>

@@ -73,21 +73,6 @@ body.dark .ai-input{border-top:1px solid #444;}
 <!-- Konten halaman disini -->
 </div>
 
-<!-- AI Assistant -->
-<div id="aiButton">🤖</div>
-<div id="aiChat">
-  <div class="ai-header">
-    <span>AI Assistant</span>
-    <button onclick="toggleAI()">✖</button>
-  </div>
-  <div class="ai-body" id="aiBody">
-    <div class="ai-msg ai">👋 Halo! Saya asisten virtual. Tanyakan tentang akun demo, fitur, alur Admin atau Karyawan.</div>
-  </div>
-  <div class="ai-input">
-    <input id="aiInput" placeholder="Tanya sesuatu..." onkeydown="if(event.key==='Enter')sendAI()">
-    <button onclick="sendAI()">➤</button>
-  </div>
-</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function(){
@@ -103,52 +88,7 @@ document.addEventListener('DOMContentLoaded', function(){
   darkBtn.addEventListener('click', toggleDark);
   if(localStorage.getItem('darkMode')==='on'){ document.body.classList.add('dark'); }
 
-  // AI Assistant
-  const aiButton=document.getElementById('aiButton');
-  const aiChat=document.getElementById('aiChat');
-  const aiBody=document.getElementById('aiBody');
-  const aiInput=document.getElementById('aiInput');
-
-  aiButton.addEventListener('click', ()=>{ aiChat.style.display=aiChat.style.display==='flex'?'none':'flex'; });
-
-  window.toggleAI=function(){ aiChat.style.display='none'; }
-
-  window.sendAI=function(){
-    const text=aiInput.value.trim();
-    if(!text) return;
-    addMsg(text,'user'); aiInput.value='';
-    setTimeout(()=>addMsg(getAIResponse(text),'ai'),300);
-  }
-
-  function addMsg(text,type){
-    const div=document.createElement('div'); div.className='ai-msg '+type; div.textContent=text;
-    aiBody.appendChild(div); aiBody.scrollTop=aiBody.scrollHeight;
-  }
-
-  window.highlightElement=function(selector,message){
-    const el=document.querySelector(selector); if(!el) return;
-    el.classList.add('highlight-guide');
-    const tooltip=document.createElement('div');
-    tooltip.textContent=message;
-    tooltip.style.position='absolute'; tooltip.style.background='#ffcc00'; tooltip.style.color='#000';
-    tooltip.style.padding='4px 8px'; tooltip.style.borderRadius='6px';
-    tooltip.style.top='-30px'; tooltip.style.left='0';
-    el.style.position='relative'; el.appendChild(tooltip);
-    setTimeout(()=>{ el.classList.remove('highlight-guide'); tooltip.remove(); },5000);
-  }
-
-  window.getAIResponse=function(q){
-    q=q.toLowerCase(); const currentPage=window.location.href;
-    if(q.includes('akun demo')||q.includes('demo')) return 'Akun Demo:\n1. Admin | admin00@gmail.com / admin00\n2. Karyawan | mrx@gmail.com / mrx';
-    if(q.includes('fitur')||q.includes('apa saja')) return `Fitur:\n1. User login berdasarkan role\n2. Admin kelola barang\n3. Admin kelola kategori\n4. Admin kelola karyawan\n5. Admin validasi peminjaman\n6. Karyawan meminjam sesuai stok\n7. Karyawan mengembalikan barang`;
-    if(q.includes('alur admin')||q.includes('admin')) return `Alur Admin:\n1. Buat kategori\n2. Masukkan barang\n3. Buat akun karyawan\n4. Lihat peminjaman\n5. Validasi peminjaman`;
-    if(q.includes('alur karyawan')||q.includes('karyawan')) return `Alur Karyawan:\n1. Lihat barang tersedia\n2. Pinjam barang\n3. Tunggu validasi admin\n4. Barang dapat dipinjam jika sudah divalidasi\n5. Kembalikan barang jika selesai\n6. Klik kembalikan`;
-    if(q.includes('login')){ highlightElement('button[type="submit"]','Klik tombol Login setelah mengisi email & password'); return 'Gunakan akun demo atau akun yang sudah terdaftar untuk login.'; }
-    if(currentPage.includes('admin/items')) return 'Kamu sedang di halaman Barang. Tambah/Edit/Hapus barang di sini.';
-    if(currentPage.includes('admin/categories')) return 'Kamu sedang di halaman Kategori. Tambah/Edit kategori di sini.';
-    if(currentPage.includes('karyawan/loans')) return 'Kamu sedang di halaman Peminjaman. Bisa pinjam atau kembalikan barang di sini.';
-    return '🤔 Maaf, saya belum paham. Coba tanya tentang "akun demo", "fitur", "alur admin", "alur karyawan" atau "login".';
-  }
+  
 });
 </script>
 </body>

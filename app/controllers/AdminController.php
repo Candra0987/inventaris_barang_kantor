@@ -264,7 +264,6 @@ public function loansPdf()
     $options = new Options();
     $options->set('defaultFont', 'Helvetica');
     $options->set('isRemoteEnabled', true);
-
     $dompdf = new Dompdf($options);
 
     // load view khusus pdf

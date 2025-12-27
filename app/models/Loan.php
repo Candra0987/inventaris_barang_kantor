@@ -136,4 +136,32 @@ public function countAll()
 }
 
 
+
+public function byEmployeePaginated($employee_id, $limit, $offset)
+{
+    $stmt = $this->pdo->prepare("
+        SELECT loans.*, items.name AS item_name
+        FROM loans
+        JOIN items ON loans.item_id = items.id
+        WHERE loans.employee_id = :employee_id
+        ORDER BY loans.requested_at DESC
+        LIMIT :limit OFFSET :offset
+    ");
+
+    $stmt->bindValue(':employee_id', $employee_id, PDO::PARAM_INT);
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+public function countByEmployee($employee_id)
+{
+    $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM loans WHERE employee_id = ?");
+    $stmt->execute([$employee_id]);
+    return $stmt->fetchColumn();
+}
+
 }
