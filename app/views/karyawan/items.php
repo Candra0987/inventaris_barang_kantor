@@ -39,11 +39,11 @@ thead {
 th, td {
   padding: 12px 15px;
   text-align: left;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border); /* GARIS TETAP */
   font-size: 0.95rem;
 }
 
-tr:hover {
+tbody tr:hover {
   background-color: #f9f9f9;
 }
 
@@ -69,23 +69,24 @@ tr:hover {
   transform: translateY(-1px);
 }
 
-/* ====== KONDISI BARANG ====== */
+/* ====== KONDISI BADGE (Bukan TD) ====== */
 .kondisi {
   font-weight: 700;
-  padding: 6px 10px;
+  padding: 5px 10px;
   border-radius: 6px;
   display: inline-block;
   text-transform: capitalize;
+  font-size: 0.85rem;
 }
 
-/* Barang Bagus = Hijau */
+/* Bagus */
 .kondisi.bagus {
   background-color: #d4f8d4;
   color: #1e7e34;
   border: 1px solid #8fd19e;
 }
 
-/* Barang Rusak = Merah */
+/* Rusak */
 .kondisi.rusak {
   background-color: #f8d4d4;
   color: #a71d2a;
@@ -127,25 +128,24 @@ tr:hover {
           <td><?= htmlspecialchars($it['category_name']) ?></td>
           <td><?= $it['quantity'] ?></td>
 
-          <!-- Kolom kondisi sudah diperbaiki dan diberi warna -->
-          <td class="kondisi <?= strtolower($it['condition']) ?>">
-            <?= htmlspecialchars($it['condition']) ?>
+          <!-- TD NORMAL + BADGE -->
+          <td>
+            <span class="kondisi <?= strtolower($it['condition']) ?>">
+              <?= htmlspecialchars($it['condition']) ?>
+            </span>
           </td>
 
-        <td>
-  <?php if (strtolower($it['condition']) === 'bagus'): ?>
-    <a class="btn-sm btn-success" 
-       href="?url=karyawan/loanForm&id=<?= $it['id'] ?>">
-       Pinjam
-    </a>
-  <?php else: ?>
-    <span class="btn-sm" 
-          style="background:#ccc; color:#666; cursor:not-allowed;">
-      Tidak tersedia
-    </span>
-  <?php endif; ?>
-</td>
-
+          <td>
+            <?php if (strtolower($it['condition']) === 'bagus'): ?>
+              <a class="btn-sm btn-success" href="?url=karyawan/loanForm&id=<?= $it['id'] ?>">
+                Pinjam
+              </a>
+            <?php else: ?>
+              <span class="btn-sm" style="background:#ccc; color:#666; cursor:not-allowed;">
+                Tidak tersedia
+              </span>
+            <?php endif; ?>
+          </td>
         </tr>
       <?php endforeach; ?>
     </tbody>

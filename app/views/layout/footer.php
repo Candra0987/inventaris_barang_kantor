@@ -34,6 +34,7 @@ html, body {
   font-size: 13px;
   width: 100%;
   box-sizing: border-box;
+  padding-top: 10px;
 }
 
 .footer-content{
@@ -73,11 +74,12 @@ html, body {
 }
 
 .footer-bottom{
-  text-align: center;
-  padding: 10px;
+  
+  display: contents;
+  padding: 15px;
   font-size: 12px;
   background: rgba(0,0,0,0.3);
-  margin: 0;
+  margin-bottom: -50;
 }
 
 /* Optional: responsive small devices */
@@ -102,7 +104,7 @@ html, body {
 
     <div class="footer-col">
       <h4>Kontak</h4>
-      <p>📞 CS: 0812-3456-7890</p>
+      <p>📞 CS: 08120000000</p>
       <p>✉️ Email: support@inventarisx.com</p>
     </div>
 
@@ -116,8 +118,7 @@ html, body {
       <h4>Sosial Media</h4>
       <div class="social">
         <a href="https://www.instagram.com/_cndrx/" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="https://github.com/Candra0987"><i class="fab fa-github"></i></a>
       </div>
     </div>
 

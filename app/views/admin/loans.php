@@ -49,7 +49,7 @@ th, td {
 }
 
 tr:hover {
-  background-color: #f9f9f9;
+  background-color: #0ec1afff;
 }
 
 /* ====== STATUS BADGE ====== */

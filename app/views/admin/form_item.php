@@ -42,9 +42,10 @@ textarea {
   border-radius: 10px;
   font-size: 1rem;
   font-family: inherit;
-  color: var(--text);
+
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background-color: #fff;
 }
 
 .form-control:focus,

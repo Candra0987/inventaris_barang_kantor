@@ -1,22 +1,17 @@
 <?php require __DIR__.'/../layout/header.php'; ?>
 
 <style>
-/* ====== PROFESSIONAL CATEGORY FORM STYLE ====== */
-body {
-    background-color: #f4f6f8;
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-    color: #212529;
-}
 
-/* Wrapper utama */
+
 .container-category {
     max-width: 640px;
     margin: 60px auto;
 }
 
-/* Kartu form */
+/* Card */
 .category-card {
-    background: #ffffff;
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
     border-radius: 14px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     overflow: hidden;
@@ -41,29 +36,46 @@ body {
 
 /* Body */
 .category-body {
-    padding: 30px 40px;
+    padding: 30px 70px;
 }
 
-/* Label dan input */
+/* Spacing */
+.mb-3 {
+    margin-bottom: 5rem;
+}
+
+/* Label */
 .form-label {
     font-weight: 600;
-    color: #343a40;
+    color: var(--bs-body-color);
     margin-bottom: 6px;
 }
 
+/* Input (BLACK BORDER) */
 .form-control {
     border-radius: 10px;
-    border: 1px solid #ced4da;
+    border: 1.5px solid #000; /* BORDER HITAM */
     padding: 10px 12px;
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
     transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.form-control:focus {
-    border-color: #20c997;
-    box-shadow: 0 0 0 0.2rem rgba(32, 201, 151, 0.25);
+/* Placeholder */
+.form-control::placeholder {
+    color: var(--bs-secondary-color);
+    opacity: 1;
 }
 
-/* Tombol */
+/* Focus */
+.form-control:focus {
+    border-color: #000;   /* TETAP HITAM */
+    box-shadow: none;     /* HILANGKAN RING BOOTSTRAP */
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+}
+
+/* Button */
 .btn-success {
     width: 100%;
     border-radius: 10px;
@@ -80,7 +92,7 @@ body {
     box-shadow: 0 4px 10px rgba(25, 135, 84, 0.25);
 }
 
-/* Responsif */
+/* Responsive */
 @media (max-width: 576px) {
     .category-body {
         padding: 25px;
