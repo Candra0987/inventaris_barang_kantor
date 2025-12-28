@@ -18,7 +18,7 @@ Fitur:
 
 8.Dark mode
 
-9. Mini AI
+9.Mini AI
 &nbsp;
 
 
