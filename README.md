@@ -95,7 +95,7 @@ Berikut adalah tampilan web
 3. Halaman login
 ![Halaman login](ss/3.jpg)
 
-4. Halaman tambah login & mini AI
+4. Halaman login & mini AI
 ![halaman login ai](ss/4.jpg)
 
 5. Halaman dashboard admin
